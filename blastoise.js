@@ -1,0 +1,6 @@
+DEX.blastoise={name:'Blastoise',num:9,types:['water'],base:{hp:79,atk:83,def:100,spa:85,spd:105,spe:78},body:14,sh:12,slots:{
+click:{label:'LMB',move:'hydropump',anim:'Shoot',kind:'hydroTwin',cd:5,channel:true,hold:'Mouse0',maxHold:10,cdPerSec:0,desc:'Hold LMB to steer two close, medium-speed water lasers toward the cursor for up to 10 seconds. They grow out from Blastoise, push enemies, and burst near walls.',p:{speed:220,maxHold:10,mult:0.2,wallBurst:true}},
+rmb:{label:'RMB',move:'surf',anim:'Attack',kind:'dashhit',cd:10,noLunge:true,steer:true,fireFrame:1,desc:'Ride a broad rolling wave toward the cursor for up to 3 seconds. Enemies hit are carried along and thrown when the ride ends.',p:{speed:300,dur:3,mult:0.9,fx:'surf',grab:true,carry:true,trail:true,tint:'rgba(120,190,255,0.55)',reach:30,throwSpec:{v:160,dur:0.25,wall:0.1,land:0}}},
+Q:{label:'Q',move:'irondefense',anim:'Charge',kind:'buff',cd:10,fireFrame:3,desc:'Harden your shell. Take half damage for 5 seconds.',p:{type:'iron',dur:5}},
+E:{label:'E',move:'liquidation',anim:'Hop',kind:'jumpslam',cd:10,noLunge:true,fireFrame:0,desc:'Leap to the cursor. The landing makes a single wave that expands across the whole arena.',p:{maxRange:9999,r:26,waveR:340,mult:1.0,waveMult:0.5}},
+Space:DODGE,Shift:DASH}};

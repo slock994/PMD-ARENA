@@ -1,0 +1,10 @@
+{
+  "name": "pmd-arena-multiplayer",
+  "version": "1.0.0",
+  "private": true,
+  "description": "PMD Arena browser game with numeric-code LAN/Hamachi multiplayer rooms",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

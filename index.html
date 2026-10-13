@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PMD Arena</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<section id="startScreen" class="start-screen">
+  <div class="start-card">
+    <div class="start-emblem" aria-hidden="true">✦</div>
+    <div class="eyebrow">POKÉMON MYSTERY DUNGEON · MULTIPLAYER</div>
+    <h1>PMD <span>Arena</span></h1>
+    <p class="start-copy">Choose your name, step into the arena, and battle a friend.</p>
+    <label class="field-label" for="playerName">Your trainer name</label>
+    <input id="playerName" class="start-input" type="text" maxlength="20" autocomplete="nickname" placeholder="Enter your name" autofocus>
+    <button id="btnHost" class="primary-action" type="button">Host a battle <span>↗</span></button>
+    <div class="join-divider"><span>OR JOIN A FRIEND</span></div>
+    <div class="join-row">
+      <input id="joinCode" class="start-input code-input" inputmode="numeric" maxlength="8" pattern="[0-9]*" placeholder="6-digit room code" aria-label="Room code">
+      <button id="btnJoin" class="secondary-action" type="button">Join</button>
+    </div>
+    <div id="startStatus" class="start-status" role="status" aria-live="polite">Host a room to get a numeric code, then share it with your friend.</div>
+    <div class="connection-note"><span class="connection-dot"></span> LAN · Hamachi · same network</div>
+  </div>
+</section>
+<main class="wrap" id="gameView" hidden>
+  <header class="game-heading">
+    <div class="room-badge"><span class="room-label">ROOM CODE</span><strong id="roomCodeDisplay">------</strong><button id="btnCopyCode" type="button" title="Copy room code">Copy</button><span id="connectionState" class="connection-state">Waiting for opponent</span></div>
+  </header>
+  <div class="layout battle-layout">
+    <section class="stage">
+      <div class="canvaswrap"><canvas id="c" tabindex="0" aria-label="Arena"></canvas></div>
+    </section>
+    <aside class="right-column">
+      <div class="card stats-card">
+        <div class="name" id="pName"></div><div id="pTypes"></div>
+        <div id="pStats" style="margin-top:8px"></div><div class="note" id="pDef"></div>
+      </div>
+      <div class="card" id="dummyCard"><h2>Training dummy</h2><div class="row"><span>Type</span><select id="dType"></select></div><div class="note" id="dInfo"></div></div>
+      <div class="card moves-card"><h2>Moves</h2><div id="moveList"></div></div>
+    </aside>
+    <section class="pokemon-bottom card wide"><h2>Choose Pokémon</h2><div class="pgrid" id="pSwitch"></div></section>
+    <section class="bottom-tools card wide"><div class="log" id="log">Battle log and move effectiveness will appear here.</div><div class="btns"><button class="ghost" id="btnNoCd">No cooldowns: off</button><button class="ghost" id="btnImmortal">Immortality: off</button><button class="ghost" id="btnHurt">Hurt me (-20 HP)</button><button class="ghost" id="btnReset">Reset fight</button></div><div class="tools"><label class="chk"><input type="checkbox" id="dbg"> Hitboxes</label><label class="chk">Zoom <select id="zoom" style="width:auto"><option value="2">2x</option><option value="3" selected>3x</option><option value="4">4x</option></select></label></div></section>
+  </div>
+  <p class="credit">Sprites: PMDCollab SpriteCollab (Pokémon Mystery Dungeon art by CHUNSOFT, community maintained). Stats and moves: Pokémon Database. Fan project, not for sale.</p>
+</main>
+<script src="js/data/init.js"></script>
+<script src="js/data/types.js"></script>
+<script src="js/data/moves.js"></script>
+<script src="js/roster.js"></script>
+<script src="js/boot.js"></script>
+<script src="js/engine/core.js"></script>
+<script src="js/engine/ui.js"></script>
+<script src="js/engine/combat.js"></script>
+<script src="js/engine/update.js"></script>
+<script src="js/engine/render.js"></script>
+<script src="js/engine/extra.js"></script>
+<script src="js/engine/loader.js"></script>
+<script src="js/engine/input.js"></script>
+<script src="js/engine/multiplayer.js"></script>
+<script src="js/engine/pikachu.js"></script>
+</body>
+</html>
