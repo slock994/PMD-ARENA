@@ -1,0 +1,110 @@
+
+:root{
+  --bg:#f1f0ea; --panel:#ffffff; --ink:#1c1f1b; --muted:#666b62; --line:#d7d9cf; --accent:#3f9a3a;
+  --arena-a:#3d4f3a; --arena-b:#37483a;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --bg:#141815; --panel:#1d231e; --ink:#e8ece4; --muted:#98a092; --line:#2f382f; --accent:#6fd668; --arena-a:#2b3a2d; --arena-b:#263429; }
+}
+:root[data-theme="dark"]{ --bg:#141815; --panel:#1d231e; --ink:#e8ece4; --muted:#98a092; --line:#2f382f; --accent:#6fd668; --arena-a:#2b3a2d; --arena-b:#263429; }
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 "Trebuchet MS","Segoe UI",system-ui,sans-serif}
+.wrap{max-width:1500px;margin:0 auto;padding:18px 16px 28px}
+h1{font-size:22px;margin:0 0 4px}
+.sub{color:var(--muted);margin:0 0 14px;max-width:75ch}
+.layout{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;align-items:start}
+.canvaswrap{text-align:center}
+.stage,.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px}
+.canvaswrap{overflow-x:auto}
+canvas{display:block;margin:0 auto;image-rendering:pixelated;cursor:crosshair;border-radius:6px;max-width:100%}
+.hud{display:flex;flex-wrap:wrap;gap:4px 18px;margin-top:8px;color:var(--muted);font-size:13px}
+.hud b{color:var(--ink);font-weight:600}
+.log{margin-top:6px;min-height:20px;font-size:14px}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.side{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;align-items:start}
+.card.wide{grid-column:1/-1}
+.card h2{font-size:14px;margin:0 0 8px}
+.chip{display:inline-block;padding:1px 9px;border-radius:999px;font-size:12px;font-weight:700;color:#fff;text-shadow:0 1px 0 rgba(0,0,0,.35);margin-right:4px}
+.name{font-size:17px;font-weight:700;margin-bottom:6px}
+.stat{display:grid;grid-template-columns:44px 30px 1fr 34px;gap:6px;align-items:center;font-size:12px;color:var(--muted);margin:2px 0}
+.stat i{display:block;height:7px;border-radius:4px;background:var(--accent)}
+.stat .track{background:var(--line);border-radius:4px;height:7px;overflow:hidden}
+.stat b{color:var(--ink);font-weight:600;text-align:right}
+.note{font-size:12px;color:var(--muted);margin-top:6px}
+.move{display:grid;grid-template-columns:52px 1fr;gap:8px;margin:7px 0;align-items:start;font-size:13px}
+.move kbd{justify-self:start}
+.move .mt{font-weight:700}
+.move .md{color:var(--muted);font-size:12px}
+kbd{border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;padding:0 6px;color:var(--ink);background:var(--bg);font:12px ui-monospace,Menlo,Consolas,monospace}
+.row{display:grid;grid-template-columns:68px 1fr;gap:6px;align-items:center;margin-bottom:5px}
+.row span{color:var(--muted);font-size:13px}
+select{width:100%;padding:5px 6px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);font:inherit}
+label.chk{display:flex;gap:8px;align-items:center;font-size:13px;color:var(--muted)}
+button.ghost{background:none;border:1px solid var(--line);color:var(--ink);padding:5px 10px;border-radius:6px;cursor:pointer;font:inherit;font-size:13px}
+button.ghost:hover{border-color:var(--accent)}
+button:focus-visible,select:focus-visible,canvas:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+details summary{cursor:pointer;font-weight:600;font-size:14px}
+.credit{margin-top:14px;font-size:12px;color:var(--muted)}
+.switch{display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap}
+.switch button.on{border-color:var(--accent);background:var(--accent);color:#fff}
+
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(78px,1fr));gap:6px;margin-bottom:0}
+.pt{display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 2px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);cursor:pointer;font:inherit;font-size:12px}
+.pt img{width:48px;height:48px;image-rendering:pixelated;pointer-events:none}
+.pt:hover{border-color:var(--accent)} .pt.on{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent) inset}
+button.ghost.on{border-color:var(--accent);background:var(--accent);color:#fff}
+.tools{display:flex;gap:8px 14px;flex-wrap:wrap;align-items:center;margin-top:8px}
+
+/* Multiplayer start screen and room header. The battle canvas and its scale remain unchanged. */
+[hidden]{display:none!important}
+.start-screen{min-height:100svh;display:grid;place-items:center;padding:28px 16px;background:radial-gradient(ellipse at 50% 20%,rgba(86,173,86,.16),transparent 48%),var(--bg)}
+.start-card{width:min(100%,430px);padding:32px 30px 24px;border:1px solid var(--line);border-radius:22px;background:var(--panel);box-shadow:0 20px 70px rgba(0,0,0,.18);text-align:center}
+.start-emblem{width:48px;height:48px;margin:0 auto 15px;display:grid;place-items:center;border-radius:16px;background:rgba(111,214,104,.13);border:1px solid rgba(111,214,104,.32);color:var(--accent);font-size:27px}
+.eyebrow{font-size:10px;letter-spacing:.16em;font-weight:800;color:var(--accent)}
+.start-card h1{margin:7px 0 8px;font-size:39px;letter-spacing:-.045em;line-height:1.1}
+.start-card h1 span{color:var(--accent)}
+.start-copy{margin:0 0 26px;color:var(--muted);font-size:14px}
+.field-label{display:block;margin:0 0 7px;text-align:left;font-size:12px;font-weight:700;color:var(--muted)}
+.start-input{width:100%;min-width:0;padding:12px 13px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit;outline:none;transition:border-color .15s,box-shadow .15s}
+.start-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(111,214,104,.13)}
+.start-input::placeholder{color:var(--muted);opacity:.72}
+.primary-action,.secondary-action{display:flex;align-items:center;justify-content:center;gap:12px;border:1px solid var(--accent);border-radius:10px;cursor:pointer;font:inherit;font-weight:800;transition:transform .15s,filter .15s}
+.primary-action{width:100%;margin-top:11px;padding:12px 16px;background:var(--accent);color:#142313}
+.primary-action span{font-size:19px;line-height:1}
+.primary-action:hover,.secondary-action:hover{filter:brightness(1.04);transform:translateY(-1px)}
+.secondary-action{padding:0 22px;background:transparent;color:var(--ink)}
+.join-divider{display:flex;align-items:center;gap:10px;margin:22px 0 13px;color:var(--muted);font-size:10px;font-weight:800;letter-spacing:.13em}
+.join-divider:before,.join-divider:after{content:"";height:1px;flex:1;background:var(--line)}
+.join-row{display:flex;gap:8px}
+.code-input{font-family:ui-monospace,Menlo,Consolas,monospace;font-weight:800;letter-spacing:.07em}
+.start-status{min-height:36px;margin-top:15px;color:var(--muted);font-size:12px;line-height:1.5}
+.start-status.error{color:#e57979}.start-status.success{color:var(--accent)}
+.connection-note{display:flex;align-items:center;justify-content:center;gap:7px;padding-top:15px;border-top:1px solid var(--line);color:var(--muted);font-size:11px}
+.connection-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px rgba(111,214,104,.12)}
+.game-heading{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:14px}
+.game-heading h1{margin:0;font-size:22px}.game-subtitle{margin:2px 0 0;color:var(--muted);font-size:12px}
+.room-badge{display:grid;grid-template-columns:auto auto auto;grid-template-rows:auto auto;align-items:center;gap:1px 9px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.room-label{grid-column:1/3;font-size:9px;letter-spacing:.12em;color:var(--muted);font-weight:800}
+.room-badge strong{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:19px;letter-spacing:.14em}
+.room-badge button{grid-column:3;grid-row:1/3;padding:5px 8px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);font:inherit;font-size:11px;cursor:pointer}
+.connection-state{grid-column:1/4;font-size:10px;color:var(--muted)}
+body.mp-live #dummyCard{display:none}
+body.mp-live #btnHurt{display:none}
+@media(max-width:560px){.start-card{padding:27px 20px 20px}.start-card h1{font-size:34px}.game-heading{align-items:flex-start}.room-badge{gap:1px 6px;padding:7px}.room-badge strong{font-size:16px}.room-badge button{padding:4px 6px}.game-subtitle{max-width:150px}}
+
+/* Battle workspace: large arena at left, stats above the move buttons on the right. */
+.battle-layout{grid-template-columns:minmax(0,1fr);gap:10px;align-items:start}
+.stage{grid-column:1;min-width:0}
+.right-column{grid-column:1;display:grid;grid-template-columns:minmax(0,1fr);gap:10px;min-width:0}
+.stats-card{order:2}.moves-card{order:1;max-height:none;overflow:visible}#dummyCard{order:3}.bottom-tools{grid-column:1/-1}
+#moveList{display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));gap:7px}
+.pokemon-bottom{grid-column:1/-1}
+.pokemon-bottom h2{margin:0 0 8px;font-size:14px}
+.move-button{display:grid;grid-template-columns:43px minmax(0,1fr);gap:8px;align-items:start;width:100%;text-align:left;padding:9px 8px;margin:0;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);cursor:pointer;font:inherit;position:relative;overflow:hidden;min-height:58px}
+.move-button .move-key{font:700 12px ui-monospace,monospace;border:1px solid var(--line);border-radius:5px;padding:4px;text-align:center;align-self:start}
+.move-button .move-title{font-weight:800;font-size:13px}.move-button .move-meta{font-size:10px;color:var(--muted);line-height:1.35}.move-button .move-desc{font-size:11px;color:var(--muted);line-height:1.35;display:block;margin-top:3px}
+.move-button.cooling{filter:grayscale(1);opacity:.65}.move-button .cooldown-cover{position:absolute;inset:0;display:grid;place-items:center;background:rgba(18,22,18,.48);color:white;font-size:23px;font-weight:900;text-shadow:0 1px 3px #000;pointer-events:none}
+@media(max-width:760px){.battle-layout{grid-template-columns:minmax(0,1fr)}.right-column,.stage,.pokemon-bottom{grid-column:1;grid-row:auto}.moves-card{max-height:none}.room-badge{margin-left:auto}#moveList{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}}

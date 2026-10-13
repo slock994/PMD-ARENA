@@ -1,0 +1,6 @@
+DEX.charmeleon={name:'Charmeleon',num:5,types:['fire'],base:{hp:58,atk:64,def:58,spa:80,spd:65,spe:80},body:10,sh:9,combo:true,slots:{
+click:{label:'LMB',move:'dragonbreath',anim:'Shoot',kind:'stream',cd:1,channel:true,hold:'Mouse0',maxHold:5,cdPerSec:0,desc:'Dragon breath burst (longer range and duration). Move while using it. Click LMB + RMB together to cast both.',p:{el:'dragon',range:100,half:22,tick:0.15,mult:0.22,dur:5,mobile:true,moveMul:0.7,pps:220}},
+rmb:{label:'RMB',move:'flamethrower',anim:'Shoot',kind:'stream',cd:1,channel:true,hold:'Mouse2',maxHold:5,cdPerSec:0,desc:'Hold RMB to breathe fire at the cursor. You can move while using it. With LMB held too, both breaths fire at the same range.',p:{el:'fire',range:100,half:11,tick:0.15,mult:0.1,pps:260,burn:0.04,mobile:true,moveMul:0.7}},
+Q:{label:'Q',move:'firespin',anim:'Rotate',kind:'dashhit',cd:7,noLunge:true,fireFrame:0,desc:'Dash inside a wheel of flame. Burns what it hits (60%).',p:{speed:320,dur:0.4,mult:1.6,fx:'wheel',ring:'flame',burn:0.6,trail:true,tint:'rgba(255,150,60,0.5)',reach:26,knock:{v:110,dur:0.2,wall:0}}},
+E:{label:'E',move:'firefang',anim:'Attack',kind:'melee',cd:2,noLunge:true,desc:'Fire Fang. 10% chance to burn.',p:{range:32,half:50,mult:1.0,fx:'fang',burn:0.1}},
+Space:DODGE,Shift:DASH}};
