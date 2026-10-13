@@ -1,6 +1,0 @@
-DEX.charizard={name:'Charizard',num:6,types:['fire','flying'],base:{hp:78,atk:84,def:78,spa:109,spd:85,spe:100},body:14,sh:12,slots:{
-click:{label:'LMB',move:'flamethrower',anim:'Shoot',kind:'stream',cd:1,channel:true,hold:'Mouse0',maxHold:5,cdPerSec:0,desc:'Hold LMB to breathe fire for up to 5 seconds. Releasing cancels it; 1 second cooldown.',p:{el:'fire',range:82,half:13,tick:0.15,mult:0.09,dur:5,mobile:true,moveMul:0.75,pps:240,burn:0.03}},
-rmb:{label:'RMB',move:'dragonrush',anim:'Attack',kind:'dashhit',cd:14,noLunge:true,windup:1,windupAnim:'Charge',fireFrame:1,desc:'Charge for 1 second with purple pixel energy, then steer Dragon Rush. It stops on contact and throws the target toward the cursor with great force.',p:{speed:360,dur:1.25,mult:0.6,fx:'rush',grab:true,follow:true,trail:true,tint:'rgba(150,110,255,0.5)',reach:24,throwSpec:{v:520,dur:0.5,wall:0.2,land:0.08}}},
-Q:{label:'Q',move:'airslash',anim:'Attack',kind:'proj',cd:3.5,noLunge:true,fireFrame:5,desc:'Two wide air blades in a small fan.',p:{n:2,spread:0.12,style:'airslash',speed:250,r:7,life:0.75,mult:0.45}},
-E:{label:'E',move:'flareblitz',anim:'Charge',kind:'buff',cd:9,fireFrame:3,desc:'Wrap yourself in flames for 5 seconds. Burns enemies in melee range, but you take recoil.',p:{type:'blitz',dur:5,radius:32,tick:0.25,mult:0.1,recoil:0.33,burn:0.05}},
-Space:DODGE,Shift:DASH}};
